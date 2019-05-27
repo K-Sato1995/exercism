@@ -2,6 +2,8 @@
 package isogram
 
 import (
+	"fmt"
+	// "regexp"
 	"strings"
 	"unicode"
 )
@@ -28,19 +30,26 @@ func isOnlyOne(word string, letter string) bool {
 
 func stripeString(word string) string {
 	var result string
-	var reg = regexp.MustCompile("[^a-zA-Z0-9]+")
-	result = reg.ReplaceAllString(word, "")
+	var strArray = strings.Split(word, "")
+
+	for i, v := range word {
+		if unicode.IsLetter(v) == false {
+			fmt.Println(strArray[i])
+			strings.Replace(word, strArray[i], " ", -1)
+		}
+	}
+
 	result = strings.ToLower(result)
 	result = strings.Join(strings.Fields(result), "")
-
 	return result
 }
 
-func replaceNonString(word string) string {
-	for i, v := range word {
-		if unicode.IsLetter(v) == false {
-			word[i] == 0
-		}
-	}
-	return word
-}
+// func replaceNonString(word string) string {
+// 	for _, v := range word {
+// 		if unicode.IsLetter(v) == false {
+// 			strings.Replace(word, v, " ", -1)
+// 			fmt.Printf("%v\n", word)
+// 		}
+// 	}
+// 	return word
+// }
