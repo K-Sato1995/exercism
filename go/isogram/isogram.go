@@ -32,7 +32,7 @@ func stripeString(word string) string {
 	var result string
 	var strArray = strings.Split(word, "")
 
-	for i, v := range word {
+	for i, v := range strArray {
 		if unicode.IsLetter(v) == false {
 			fmt.Println(strArray[i])
 			strings.Replace(word, strArray[i], " ", -1)
@@ -41,15 +41,16 @@ func stripeString(word string) string {
 
 	result = strings.ToLower(result)
 	result = strings.Join(strings.Fields(result), "")
+
 	return result
 }
 
-// func replaceNonString(word string) string {
-// 	for _, v := range word {
-// 		if unicode.IsLetter(v) == false {
-// 			strings.Replace(word, v, " ", -1)
-// 			fmt.Printf("%v\n", word)
-// 		}
-// 	}
-// 	return word
-// }
+func replaceNonString(word string) string {
+	for _, v := range word {
+		if unicode.IsLetter(v) == false {
+			strings.Replace(word, v, " ", -1)
+			fmt.Printf("%v\n", word)
+		}
+	}
+	return word
+}
