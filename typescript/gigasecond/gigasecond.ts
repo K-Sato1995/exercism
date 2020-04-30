@@ -6,7 +6,8 @@ class Gigasecond {
   }
 
   public date(): Date {
-    return new Date(this.time.setSeconds(this.time.getSeconds() + 10 ** 9));
+    const givenTime = new Date(+this.time);
+    return new Date(givenTime.setSeconds(givenTime.getSeconds() + 10 ** 9));
   }
 }
 

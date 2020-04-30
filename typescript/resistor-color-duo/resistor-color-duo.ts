@@ -1,35 +1,33 @@
-const colorMapper = (color: string): string => {
-  switch (color) {
-    case "black":
-      return "0";
-    case "brown":
-      return "1";
-    case "red":
-      return "2";
-    case "orange":
-      return "3";
-    case "yellow":
-      return "4";
-    case "green":
-      return "5";
-    case "blue":
-      return "6";
-    case "violet":
-      return "7";
-    case "grey":
-      return "8";
-    case "white":
-      return "9";
-    default:
-      return "0";
-  }
+type Color =
+  | "black"
+  | "brown"
+  | "red"
+  | "orange"
+  | "yellow"
+  | "green"
+  | "blue"
+  | "violet"
+  | "grey"
+  | "white";
+
+const colorTable: { [id: string]: string } = {
+  black: "0",
+  brown: "1",
+  red: "2",
+  orange: "3",
+  yellow: "4",
+  green: "5",
+  blue: "6",
+  violet: "7",
+  grey: "8",
+  white: "9",
 };
 
 export class ResistorColor {
-  private colors: string[];
+  private colors: Color[];
 
-  constructor(colors: string[]) {
-    if (colors.length === 1)
+  constructor(colors: Color[]) {
+    if (colors.length <= 1)
       throw new Error("At least two colors need to be present");
 
     this.colors = colors;
@@ -37,7 +35,9 @@ export class ResistorColor {
 
   value = (): number => {
     const colors = this.colors.slice(0, 2);
-    const result = parseInt(colors.map((color) => colorMapper(color)).join(""));
+    const result = parseInt(
+      colors.map((color) => colorTable[color] || "0").join("")
+    );
     return result;
   };
 }
