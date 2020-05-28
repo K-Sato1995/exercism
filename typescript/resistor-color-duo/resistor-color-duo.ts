@@ -34,12 +34,9 @@ export class ResistorColor {
   }
 
   value = (): number => {
-    const colors = this.colors.slice(0, 2);
-    // const [color1, color2] = this.colors;
-    console.log(colors);
-    const result = parseInt(
-      colors.map((color) => colorTable[color] || "0").join("")
-    );
+    const [color1, color2] = this.colors;
+    const colorNumber = (state: Color) => colorTable[state] || "0";
+    const result = parseInt(`${colorNumber(color1)}${colorNumber(color2)}`);
     return result;
   };
 }
