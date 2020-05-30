@@ -10,17 +10,17 @@ type Color =
   | "grey"
   | "white";
 
-const colorTable: { [id in Color]: string } = {
-  black: "0",
-  brown: "1",
-  red: "2",
-  orange: "3",
-  yellow: "4",
-  green: "5",
-  blue: "6",
-  violet: "7",
-  grey: "8",
-  white: "9",
+const colorTable: { [id in Color]: number } = {
+  black: 0,
+  brown: 1,
+  red: 2,
+  orange: 3,
+  yellow: 4,
+  green: 5,
+  blue: 6,
+  violet: 7,
+  grey: 8,
+  white: 9,
 };
 
 export class ResistorColor {
@@ -36,7 +36,7 @@ export class ResistorColor {
   value = (): number => {
     const [color1, color2] = this.colors;
     const colorNumber = (state: Color) => colorTable[state] || "0";
-    const result = parseInt(colorNumber(color1) + colorNumber(color2));
-    return result;
+    const result = "" + colorNumber(color1) + colorNumber(color2);
+    return parseInt(result);
   };
 }
