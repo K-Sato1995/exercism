@@ -35,7 +35,7 @@ export class ResistorColor {
 
   value = (): number => {
     const [color1, color2] = this.colors;
-    const colorNumber = (state: Color) => colorTable[state] || "0";
+    const colorNumber = (state: Color) => colorTable[state];
     const result = "" + colorNumber(color1) + colorNumber(color2);
     return parseInt(result);
   };
