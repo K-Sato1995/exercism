@@ -21,7 +21,7 @@ const colorTable: { [id in Color]: number } = {
   violet: 7,
   grey: 8,
   white: 9,
-};
+} as const;
 
 export class ResistorColor {
   private colors: Color[];
