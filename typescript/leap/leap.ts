@@ -1,3 +1,4 @@
+// Wrapper class
 class Year {
   dividend: number;
 
