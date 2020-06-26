@@ -1,4 +1,7 @@
-const rnaTable: { [id in string]: string } = {
+type DANStrand = "G" | "C" | "T" | "A";
+type RNAStrand = "C" | "G" | "A" | "U";
+
+const rnaTable: { [id in DANStrand]: RNAStrand } = {
   G: "C",
   C: "G",
   T: "A",
@@ -7,19 +10,22 @@ const rnaTable: { [id in string]: string } = {
 
 class Transcriptor {
   toRna(dnaStrand: string) {
-    const dnaStrandArry = dnaStrand.split("");
+    if (!this.isValidDnaStrand(dnaStrand)) throw "Invalid input DNA.";
 
-    dnaStrandArry.forEach((letter: string, index: number, arr: string[]) => {
-      if (!this.validate(letter)) throw "Invalid input DNA.";
+    const dnaStrandArry: any = dnaStrand.split("");
 
-      arr[index] = rnaTable[letter];
-    });
+    dnaStrandArry.forEach(
+      (letter: DANStrand, index: number, arr: RNAStrand[]) => {
+        arr[index] = rnaTable[letter];
+      }
+    );
 
     return dnaStrandArry.join("");
   }
 
-  private validate(letter: string) {
-    return letter.match(/[G|C|T|A]/g);
+  private isValidDnaStrand(text: string) {
+    const matchedText = text.match(/[G|C|T|A]/g) || [];
+    return text === matchedText.join("");
   }
 }
 
