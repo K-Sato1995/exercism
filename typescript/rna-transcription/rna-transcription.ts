@@ -9,21 +9,21 @@ const rnaTable: { [id in DANStrand]: RNAStrand } = {
 };
 
 class Transcriptor {
-  toRna(dnaStrand: string) {
+  toRna(dnaStrand: string): string {
     if (!this.isValidDnaStrand(dnaStrand)) throw "Invalid input DNA.";
 
-    const dnaStrandArry: any = dnaStrand.split("");
+    const dnaStrandArry = [...dnaStrand] as DANStrand[];
 
     dnaStrandArry.forEach(
-      (letter: DANStrand, index: number, arr: RNAStrand[]) => {
-        arr[index] = rnaTable[letter];
+      (value: DANStrand, index: number, array: string[]) => {
+        array[index] = rnaTable[value];
       }
     );
 
     return dnaStrandArry.join("");
   }
 
-  private isValidDnaStrand(text: string) {
+  private isValidDnaStrand(text: string): boolean {
     const matchedText = text.match(/[G|C|T|A]/g) || [];
     return text === matchedText.join("");
   }
