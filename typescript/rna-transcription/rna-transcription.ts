@@ -1,3 +1,4 @@
+// https://codemix.com/opaque-types-in-javascript#:~:text=TypeScript%20does%20not%20have%20built,number)%20%7B%20if%20(Math.&text=You%20can%20try%20this%20example%20in%20the%20TypeScript%20Playground
 type DNA = "G" | "C" | "T" | "A";
 type RNA = "C" | "G" | "A" | "U";
 
